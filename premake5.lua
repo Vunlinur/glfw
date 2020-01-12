@@ -1,6 +1,7 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
+	staticruntime "on"
 
 	targetdir ("bin/" .. configDir .. "/%{prj.name}")
 	objdir ("bin-intermediate/" .. configDir .. "/%{prj.name}")
@@ -18,10 +19,9 @@ project "GLFW"
 		"src/window.c"
 	}
 	filter "system:linux"
-		pic "On"
+		pic "on"
 
 		systemversion "latest"
-		staticruntime "On"
 
 		files
 		{
@@ -44,7 +44,7 @@ project "GLFW"
 
 	filter "system:windows"
 		systemversion "latest"
-		staticruntime "On"
+		
 
 		files
 		{
@@ -66,9 +66,10 @@ project "GLFW"
 		}
 
 	filter "configurations:Debug"
-		runtime "Debug"
 		symbols "on"
+		runtime "Debug"
 
 	filter "configurations:Release"
-		runtime "Release"
+		symbols "on"
 		optimize "on"
+		runtime "Release"
